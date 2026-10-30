@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products | PartsFromIndia</title>
+  <meta name="description" content="Browse automotive spare parts by category and vehicle type. Hover a part to see its SKU and minimum order quantity.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><img src="https://i.im.ge/QQ9A8Ip/2026-04-19-13-19-04-206.png" alt="PartsFromIndia logo"></a>
+    <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html" aria-current="page">Products</a></li>
+        <li><a href="contact.html">Request a Quote</a></li>
+        <li><a class="phone" href="tel:+917026767227">+91 7026767227</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="page-banner" style="--hero:url('images/hero-engine-parts.jpg')">
+    <div class="wrap">
+      <h1>Our Products</h1>
+      <p class="lead">Browse by system and vehicle type. Hover over a part to see its SKU and minimum order quantity.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>Brands we supply</h2>
+      <div class="brand-tiles">
+        <div class="brand-tile"><img src="images/bosch.png" alt="Bosch"></div>
+        <div class="brand-tile"><img src="images/mrf.png" alt="MRF"></div>
+        <div class="brand-tile"><img src="images/bando.png" alt="Bando"></div>
+        <div class="brand-tile"><img src="images/ceat.png" alt="CEAT"></div>
+        <div class="brand-tile"><img src="images/ngk.png" alt="NGK"></div>
+        <div class="brand-tile"><img src="images/exide.png" alt="Exide"></div>
+        <div class="brand-tile"><img src="images/champion.png" alt="Champion"></div>
+      </div>
+
+      <h2>Product range</h2>
+      <div class="toolbar">
+        <input type="search" id="search" placeholder="Search by name or SKU" aria-label="Search products">
+        <select id="vehicle" aria-label="Vehicle type">
+          <option value="">All vehicle types</option>
+          <option>Passenger Vehicles</option>
+          <option>Heavy Commercial Trucks</option>
+          <option>Two-Wheelers</option>
+          <option>Tractors</option>
+        </select>
+      </div>
+      <div class="chips" id="cats" role="group" aria-label="Category">
+        <button class="chip" data-cat="" aria-pressed="true">All</button>
+        <button class="chip" data-cat="Engine" aria-pressed="false">Engine</button>
+        <button class="chip" data-cat="Steering" aria-pressed="false">Steering</button>
+        <button class="chip" data-cat="Electrical" aria-pressed="false">Electrical</button>
+        <button class="chip" data-cat="Body" aria-pressed="false">Body</button>
+      </div>
+
+      <div class="img-grid" id="grid"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <span>&copy; 2026 PartsFromIndia. All rights reserved.</span>
+    <span><a href="contact.html">Export desk</a></span>
+  </div>
+</footer>
+
+<div class="float-btns">
+  <a class="wa" href="https://wa.me/917026767227" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">WA</a>
+  <a class="ml" href="contact.html" aria-label="Send an enquiry">@</a>
+</div>
+
+<script>
+  const menuBtn = document.querySelector('.menu-btn');
+  const nav = document.getElementById('nav');
+  menuBtn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+
+  // A product with no photo shows as a text tile until its photo file is added.
+  // Replace the sample SKUs and details with your real catalogue.
+  const products = [
+    { sku: 'TBC-01', name: 'M Standard Oil Filter', cat: 'Engine', veh: ['Two-Wheelers'], moq: 'To confirm', img: 'images/prod-1.jpg' },
+    { sku: 'TBC-02', name: 'M Standard Headlight Assembly', cat: 'Electrical', veh: ['Two-Wheelers'], moq: 'To confirm', img: 'images/prod-2.jpg' },
+    { sku: 'PFI-ENG-1042', name: 'Timing Belt Tensioner Assembly', cat: 'Engine', veh: ['Passenger Vehicles', 'Heavy Commercial Trucks'], moq: '200 pcs', img: 'images/prod-3.jpg' },
+    { sku: 'PFI-STR-2210', name: 'Tie Rod End', cat: 'Steering', veh: ['Passenger Vehicles', 'Heavy Commercial Trucks', 'Tractors'], moq: '300 pcs', img: 'images/prod-4.jpg' },
+    { sku: 'PFI-ELC-3305', name: 'Crankshaft Position Sensor', cat: 'Electrical', veh: ['Passenger Vehicles', 'Two-Wheelers'], moq: '500 pcs', img: 'images/prod-5.jpg' },
+    { sku: 'PFI-BDY-4117', name: 'Door Hinge Set', cat: 'Body', veh: ['Passenger Vehicles'], moq: '400 sets', img: 'images/prod-6.jpg' },
+    { sku: 'PFI-ENG-1188', name: 'Fuel Injector Nozzle', cat: 'Engine', veh: ['Heavy Commercial Trucks', 'Tractors'], moq: '150 pcs', img: 'images/prod-7.jpg' },
+    { sku: 'PFI-STR-2255', name: 'Steering Gearbox Seal Kit', cat: 'Steering', veh: ['Heavy Commercial Trucks', 'Tractors'], moq: '250 kits', img: 'images/prod-8.jpg' }
+  ];
+
+  const state = { cat: '', veh: '', q: '' };
+  const grid = document.getElementById('grid');
+  const chips = document.querySelectorAll('#cats .chip');
+
+  const preset = new URLSearchParams(location.search).get('category');
+  if (preset) {
+    state.cat = preset;
+    chips.forEach(c => c.setAttribute('aria-pressed', c.dataset.cat === preset));
+  }
+
+  function tile(p) {
+    const a = document.createElement('a');
+    a.href = 'contact.html?sku=' + encodeURIComponent(p.sku);
+    a.title = p.name;
+    const img = document.createElement('img');
+    img.alt = p.name;
+    img.loading = 'lazy';
+    img.onerror = () => {
+      const ph = document.createElement('div');
+      ph.className = 'ph';
+      ph.innerHTML = `<strong>${p.name}</strong><span>SKU ${p.sku}</span>`;
+      a.replaceChildren(ph);
+    };
+    img.src = p.img;
+    const cap = document.createElement('span');
+    cap.className = 'cap';
+    cap.innerHTML = `<strong>${p.name}</strong><br>SKU ${p.sku} &middot; MOQ ${p.moq}`;
+    a.append(img, cap);
+    return a;
+  }
+
+  function render() {
+    const q = state.q.trim().toLowerCase();
+    const list = products.filter(p =>
+      (!state.cat || p.cat === state.cat) &&
+      (!state.veh || p.veh.includes(state.veh)) &&
+      (!q || `${p.name} ${p.sku}`.toLowerCase().includes(q))
+    );
+    grid.replaceChildren(...list.map(tile));
+  }
+
+  chips.forEach(c => c.addEventListener('click', () => {
+    state.cat = c.dataset.cat;
+    chips.forEach(x => x.setAttribute('aria-pressed', x === c));
+    render();
+  }));
+  document.getElementById('vehicle').addEventListener('change', e => { state.veh = e.target.value; render(); });
+  document.getElementById('search').addEventListener('input', e => { state.q = e.target.value; render(); });
+
+  render();
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PartsFromIndia | Precision Automotive Parts Exported Worldwide</title>
+  <meta name="description" content="OEM and aftermarket automotive components machined in India and inspected before export to distributors, fleets and importers worldwide.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><img src="https://i.im.ge/QQ9A8Ip/2026-04-19-13-19-04-206.png" alt="PartsFromIndia logo"></a>
+    <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Request a Quote</a></li>
+        <li><a class="phone" href="tel:+917026767227">+91 7026767227</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Indian automotive components Exported worldwide.</h1>
+      <p class="lead">Engine, brake, suspension and electrical parts machined to your drawing, inspected before they leave India, and priced for volume. Built for distributors, fleet managers and importers.</p>
+      <div class="btn-row">
+        <a class="btn" href="contact.html">Request an Export Quote</a>
+        <a class="btn ghost" href="products.html">Browse Products</a>
+      </div>
+      
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="stats" style="grid-template-columns:repeat(2,1fr)">
+        <div class="stat"><b>10,000+</b><span>SKUs available</span></div>
+        <div class="stat"><b>99.4%</b><span>On-time global dispatch</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <h2>Product categories</h2>
+      <p class="muted">Pick a range to see specifications, material grades and minimum order quantities.</p>
+      <div class="grid" style="margin-top:32px">
+        <article class="card">
+          <h3>Engine and Transmission Components</h3>
+          <p class="muted">Tensioners, seals, injector parts and gearbox components in hardened steel and alloy.</p>
+          <a class="more" href="products.html?category=Engine">View range</a>
+        </article>
+        <article class="card">
+          <h3>Brake and Suspension Systems</h3>
+          <p class="muted">Tie rods, bushings and suspension hardware built for load-bearing service.</p>
+          <a class="more" href="products.html?category=Steering">View range</a>
+        </article>
+        <article class="card">
+          <h3>Electrical and Sensor Units</h3>
+          <p class="muted">Position sensors, connectors and wiring harness assemblies for passenger and commercial fleets.</p>
+          <a class="more" href="products.html?category=Electrical">View range</a>
+        </article>
+        <article class="card">
+          <h3>Custom CNC Machined Spare Parts</h3>
+          <p class="muted">Low-volume and discontinued parts made from your drawing, CAD file or sample.</p>
+          <a class="more" href="contact.html">Send a drawing</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <h2>Why source from India?</h2>
+      <p class="muted">Choose a point to see what it means for your landed cost and delivery.</p>
+      <div class="tabs" role="group" aria-label="Sourcing advantages" style="margin-top:28px">
+        <button class="chip" data-idx="0" aria-pressed="true">Cost-effective manufacturing</button>
+        <button class="chip" data-idx="1" aria-pressed="false">Strict quality checks</button>
+        <button class="chip" data-idx="2" aria-pressed="false">Duty benefits</button>
+        <button class="chip" data-idx="3" aria-pressed="false">Hassle-free customs</button>
+      </div>
+      <div class="panel" id="why-panel" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-band">
+        <div>
+          <h2 style="margin-bottom:6px">Send us your part number. We will reply with a quote.</h2>
+          <p class="muted">Share a SKU, OEM number or drawing and the quantity you need.</p>
+        </div>
+        <a class="btn" href="contact.html">Request an Export Quote</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <span>&copy; 2026 PartsFromIndia. All rights reserved.</span>
+    <span><a href="contact.html">Export desk</a></span>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.querySelector('.menu-btn');
+  const nav = document.getElementById('nav');
+  menuBtn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+
+  const points = [
+    ['Cost-effective manufacturing', 'Labour and machining costs are lower than in most export markets, and mature supplier networks keep material costs stable. Savings pass to you as a lower unit price on the same drawing and spec.'],
+    ['Strict quality checks', 'Every batch is measured on coordinate measuring machines (CMM) against your drawing before packing. You receive inspection reports with each shipment.'],
+    ['Duty benefits', 'Import duty depends on your destination market and the HS code of the part. We confirm applicable duties and any trade-agreement preferences for each order before you commit.'],
+    ['Hassle-free customs', 'We prepare the commercial invoice, packing list and certificate of origin, and coordinate dispatch through Nhava Sheva (JNPT) or Mundra Port.']
+  ];
+  const panel = document.getElementById('why-panel');
+  const chips = document.querySelectorAll('.chip[data-idx]');
+  function show(i) {
+    panel.innerHTML = '<h3></h3><p></p>';
+    panel.querySelector('h3').textContent = points[i][0];
+    panel.querySelector('p').textContent = points[i][1];
+    chips.forEach((c, n) => c.setAttribute('aria-pressed', n === i));
+  }
+  chips.forEach((c, n) => c.addEventListener('click', () => show(n)));
+  show(0);
+</script>
+<div class="float-btns">
+  <a class="wa" href="https://wa.me/917026767227" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">WA</a>
+  <a class="ml" href="contact.html" aria-label="Send an enquiry">@</a>
+</div>
+</body>
+</html>

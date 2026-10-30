@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Request an Export Quote | PartsFromIndia</title>
+  <meta name="description" content="Send a request for quotation for automotive parts. Share your SKU, OEM number, drawing and quantity.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="index.html"><img src="https://i.im.ge/QQ9A8Ip/2026-04-19-13-19-04-206.png" alt="PartsFromIndia logo"></a>
+    <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html" aria-current="page">Request a Quote</a></li>
+        <li><a class="phone" href="tel:+917026767227">+91 7026767227</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section style="padding-top:56px">
+    <div class="wrap split" style="align-items:start">
+      <div class="form-box">
+        <h1 style="font-size:2.6rem;margin-bottom:8px">Request for Quotation</h1>
+        <p class="muted" style="margin-bottom:24px">Fill in what you know. Our export team replies within one business day.</p>
+        <!-- Connect this form to your backend or form service (e.g. Formspree) by changing the action URL. -->
+        <form action="#" method="post" enctype="multipart/form-data">
+          <div class="form-grid">
+            <div class="field"><label for="name">Name</label><input id="name" name="name" required autocomplete="name"></div>
+            <div class="field"><label for="company">Company name</label><input id="company" name="company" required autocomplete="organization"></div>
+            <div class="field"><label for="country">Country</label><input id="country" name="country" required autocomplete="country-name"></div>
+            <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+            <div class="field full"><label for="part">Part name, SKU or OEM number</label><input id="part" name="part" required></div>
+            <div class="field"><label for="qty">Quantity needed</label><input id="qty" name="qty" type="number" min="1" required></div>
+            <div class="field"><label for="drawing">Attach CAD or part drawing (optional)</label><input id="drawing" name="drawing" type="file" accept=".pdf,.dwg,.dxf,.step,.stp,.igs,.png,.jpg"></div>
+            <div class="field full"><label for="notes">Notes (target price, delivery port, certifications needed)</label><textarea id="notes" name="notes" rows="4"></textarea></div>
+          </div>
+          <button class="btn" type="submit">Submit RFQ</button>
+        </form>
+      </div>
+
+      <aside>
+        <h2 style="font-size:2rem">Direct export desk</h2>
+        <div class="card" style="margin-top:20px;gap:14px">
+          <p><strong>WhatsApp Business</strong><br><a href="https://wa.me/917026767227">+91 7026767227</a></p>
+          <p><strong>Email</strong><br><a href="mailto:info@partsfromindia.com">info@partsfromindia.com</a></p>
+          <p><strong>Shipping hubs</strong><br><span class="muted">Nhava Sheva (JNPT) Port, Mundra Port</span></p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <span>&copy; 2026 PartsFromIndia. All rights reserved.</span>
+    <span><a href="products.html">Products</a></span>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.querySelector('.menu-btn');
+  const nav = document.getElementById('nav');
+  menuBtn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+
+  // Prefill the part field when arriving from a product's "Inquire for Bulk Order" button
+  const sku = new URLSearchParams(location.search).get('sku');
+  if (sku) document.getElementById('part').value = sku;
+</script>
+<div class="float-btns">
+  <a class="wa" href="https://wa.me/917026767227" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">WA</a>
+  <a class="ml" href="contact.html" aria-label="Send an enquiry">@</a>
+</div>
+</body>
+</html>
