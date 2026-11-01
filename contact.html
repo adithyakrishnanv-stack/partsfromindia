@@ -31,7 +31,11 @@
         <h1 style="font-size:2.6rem;margin-bottom:8px">Request for Quotation</h1>
         <p class="muted" style="margin-bottom:24px">Fill in what you know. Our export team replies within one business day.</p>
         <!-- Connect this form to your backend or form service (e.g. Formspree) by changing the action URL. -->
-        <form action="#" method="post" enctype="multipart/form-data">
+        <form action="https://formsubmit.co/info@partsfromindia.com" method="POST" enctype="multipart/form-data">
+  <!-- FormSubmit Configuration Fields -->
+  <input type="hidden" name="_captcha" value="false">
+  <input type="text" name="_honey" style="display:none">
+  <input type="hidden" name="_subject" value="New RFQ Submission from PartsFromIndia">
           <div class="form-grid">
             <div class="field"><label for="name">Name</label><input id="name" name="name" required autocomplete="name"></div>
             <div class="field"><label for="company">Company name</label><input id="company" name="company" required autocomplete="organization"></div>
